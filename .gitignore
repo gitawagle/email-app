@@ -1,0 +1,11 @@
+__pycache__/
+*.pyc
+.venv/
+venv/
+
+# secrets — never commit these
+credentials.json
+token.json
+
+# local db — never commit real email data
+*.db
