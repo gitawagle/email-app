@@ -9,3 +9,6 @@ token.json
 
 # local db — never commit real email data
 *.db
+
+# API keys
+.env
