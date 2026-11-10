@@ -41,5 +41,3 @@ cd app && uvicorn main:app --reload --port 8000
 cd frontend && npm run dev
 ```
 
-Open http://localhost:5173. The "Refresh" button in the UI pulls the
-newest inbox messages and runs analysis on any that are unanalyzed.
