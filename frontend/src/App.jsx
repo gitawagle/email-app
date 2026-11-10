@@ -3,10 +3,17 @@ import './App.css'
 
 const API_BASE = 'http://localhost:8000'
 
-const DOT_COLORS = ['#6cbf73', '#f2b65a', '#e85a5a', '#5bbad5', '#a78bfa']
+const DOT_COLORS = ['#e8846f', '#4fc3d6', '#f2b65a', '#8d7ae8', '#6cbf73']
 
 function initials(text) {
   return (text || '?').replace(/@.*/, '').slice(0, 2).toUpperCase()
+}
+
+function timeOfDayGreeting() {
+  const hour = new Date().getHours()
+  if (hour < 12) return 'Morning'
+  if (hour < 18) return 'Afternoon'
+  return 'Evening'
 }
 
 function Avatar({ label }) {
@@ -38,8 +45,10 @@ function Sidebar({ categories, activeCategory, onSelect, onAddCategory }) {
     <aside className="sidebar">
       <div className="profile">
         <div className="profile-logo">✉</div>
-        <div className="profile-name">Email Tracker</div>
-        <div className="muted">Personal inbox</div>
+        <div>
+          <div className="profile-name">Email Tracker</div>
+          <div className="muted">Personal inbox</div>
+        </div>
       </div>
 
       {adding ? (
@@ -117,7 +126,7 @@ const LABEL_CLASS = {
   promo: 'badge-muted',
 }
 
-function EmailList({ emails, sendersByAddress, query, onQuery, onRefreshed, showPromos, onTogglePromos }) {
+function EmailList({ emails, sendersByAddress, query, onQuery, onRefreshed, showPromos, onTogglePromos, category }) {
   const today = new Date().toLocaleDateString(undefined, {
     weekday: 'long',
     day: 'numeric',
@@ -131,7 +140,12 @@ function EmailList({ emails, sendersByAddress, query, onQuery, onRefreshed, show
   return (
     <main className="main">
       <header className="main-header">
-        <span className="date">{today}</span>
+        <div className="greeting-block">
+          <h1 className="greeting">Good {timeOfDayGreeting()}</h1>
+          <p className="muted greeting-sub">
+            {category} · {today}
+          </p>
+        </div>
         <div className="header-actions">
           <input
             className="search search-inline"
@@ -235,6 +249,7 @@ function SenderPanel({ category, senders, onSendersChanged }) {
 
   return (
     <aside className="senders">
+      <div className="senders-title">Senders</div>
       <form onSubmit={handleSubmit}>
         <input
           type="email"
@@ -345,6 +360,7 @@ function App() {
           <EmailList
             emails={emails}
             sendersByAddress={sendersByAddress}
+            category={activeCategory}
             query={query}
             onQuery={setQuery}
             showPromos={showPromos}
