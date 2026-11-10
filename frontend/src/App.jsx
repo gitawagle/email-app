@@ -3,8 +3,6 @@ import './App.css'
 
 const API_BASE = 'http://localhost:8000'
 
-const DOT_COLORS = ['#e8846f', '#4fc3d6', '#f2b65a', '#8d7ae8', '#6cbf73']
-
 function initials(text) {
   return (text || '?').replace(/@.*/, '').slice(0, 2).toUpperCase()
 }
@@ -17,15 +15,7 @@ function timeOfDayGreeting() {
 }
 
 function Avatar({ label }) {
-  // Stable color per label so the same sender always looks the same.
-  let hash = 0
-  for (const ch of label || '') hash = (hash * 31 + ch.charCodeAt(0)) >>> 0
-  const hue = hash % 360
-  return (
-    <div className="avatar" style={{ background: `hsl(${hue} 55% 88%)`, color: `hsl(${hue} 45% 35%)` }}>
-      {initials(label)}
-    </div>
-  )
+  return <div className="avatar">{initials(label)}</div>
 }
 
 function Sidebar({ categories, activeCategory, onSelect, onAddCategory }) {
@@ -69,7 +59,7 @@ function Sidebar({ categories, activeCategory, onSelect, onAddCategory }) {
       )}
 
       <nav className="nav">
-        {categories.map((c, i) => (
+        {categories.map((c) => (
           <button
             key={c.name}
             type="button"
@@ -77,7 +67,6 @@ function Sidebar({ categories, activeCategory, onSelect, onAddCategory }) {
             className={`nav-item${c.name === activeCategory ? ' nav-active' : ''}`}
             onClick={() => onSelect(c.name)}
           >
-            <span className="dot" style={{ background: DOT_COLORS[i % DOT_COLORS.length] }} />
             <span className="nav-label">{c.name}</span>
             {c.email_count > 0 && <span className="count">{c.email_count}</span>}
           </button>
