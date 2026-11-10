@@ -130,10 +130,9 @@ function EmailList({ emails, sendersByAddress, query, onQuery, onRefreshed, show
     <main className="main">
       <header className="main-header">
         <div className="greeting-block">
+          <div className="eyebrow">{category}</div>
           <h1 className="greeting">Good {timeOfDayGreeting()}</h1>
-          <p className="muted greeting-sub">
-            {category} · {today}
-          </p>
+          <p className="muted greeting-sub">{today}</p>
         </div>
         <div className="header-actions">
           <input

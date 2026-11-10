@@ -1,15 +1,16 @@
 :root {
-  --bg: #f5f6f8;
+  --bg: #f3f4f6;
   --panel: #ffffff;
-  --text: #868b97;
-  --text-h: #1a1d24;
-  --border: #e8eaef;
-  --accent: #3058d8;
-  --accent-soft: #eaeffb;
-  --danger: #b3463a;
-  --radius: 8px;
+  --text: #6b6f78;
+  --text-h: #16181d;
+  --border: #dfe1e6;
+  --accent: #1f3a63;
+  --accent-soft: #eef1f6;
+  --danger: #8a3324;
+  --radius: 3px;
+  --font-serif: Georgia, Cambria, 'Times New Roman', Times, serif;
 
-  font: 14px/1.45 system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+  font: 14px/1.5 system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
   color: var(--text);
   background: var(--bg);
   -webkit-font-smoothing: antialiased;
