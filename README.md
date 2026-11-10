@@ -37,6 +37,8 @@ ANTHROPIC_API_KEY=sk-...
 # Terminal 1 — backend (http://localhost:8000)
 cd app && uvicorn main:app --reload --port 8000
 
+
+
 # Terminal 2 — frontend (http://localhost:5173)
 cd frontend && npm run dev
 ```
